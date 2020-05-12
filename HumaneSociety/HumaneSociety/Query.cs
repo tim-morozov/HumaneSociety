@@ -166,7 +166,26 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-           
+           switch(crudOperation)
+            {
+                case "create":
+                    AddEmployee(employee);
+                    break;
+
+                case "find":
+                    FindEmployee(employee);
+                    break;
+
+                case "update":
+                    UpdateEmployee(employee);
+                    break;
+                case "remove":
+                    RemoveEmployee(employee);
+                    break;
+
+            }
+
+                
         }
 
         internal static void AddEmployee(Employee employee)
@@ -177,10 +196,36 @@ namespace HumaneSociety
 
        internal static Employee FindEmployee(Employee employee)
         {
-            Employee foundEmployee = db.Employees.Where(e => e.LastName == employee.LastName);
-
+           return db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
         }
 
+        internal static void UpdateEmployee(Employee employee)
+        {
+            Employee updateEmployee = null;
+
+            try
+            {
+                updateEmployee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).Single();
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine("No Employee found");
+                Console.WriteLine("No update have been made.");
+                return;
+            }
+
+            updateEmployee.FirstName = employee.FirstName;
+            updateEmployee.LastName = employee.LastName;
+            updateEmployee.UserName = employee.UserName;
+            updateEmployee.Password = employee.Password;
+
+            db.SubmitChanges();
+        }
+
+        internal static void RemoveEmployee(Employee employee)
+        {
+
+        }
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
