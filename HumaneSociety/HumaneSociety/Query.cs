@@ -175,7 +175,11 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
+       internal static Employee FindEmployee(Employee employee)
+        {
+            Employee foundEmployee = db.Employees.Where(e => e.LastName == employee.LastName);
 
+        }
 
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
