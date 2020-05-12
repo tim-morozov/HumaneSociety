@@ -214,17 +214,18 @@ namespace HumaneSociety
                 return;
             }
 
-            updateEmployee.FirstName = employee.FirstName;
-            updateEmployee.LastName = employee.LastName;
-            updateEmployee.UserName = employee.UserName;
-            updateEmployee.Password = employee.Password;
+            updateEmployee.FirstName = UserInterface.GetUserInput();
+            updateEmployee.LastName = UserInterface.GetUserInput();
+            updateEmployee.UserName = UserInterface.GetUserInput();
+            updateEmployee.Password = UserInterface.GetUserInput();
 
             db.SubmitChanges();
         }
 
         internal static void RemoveEmployee(Employee employee)
         {
-
+            db.Employees.DeleteOnSubmit(employee);
+            db.SubmitChanges();
         }
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
