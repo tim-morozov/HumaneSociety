@@ -318,7 +318,6 @@ namespace HumaneSociety
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            IQueryable<Animal> animal;
             if(updates.ContainsKey(1))
             {
                 var category = db.Categories.Where(c => c.Name == updates[1]).FirstOrDefault();
