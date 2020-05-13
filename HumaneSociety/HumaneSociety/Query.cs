@@ -367,6 +367,19 @@ namespace HumaneSociety
                     return db.Animals.Where(a => a.PetFriendly == false);
                 }
             }
+            else if(updates.ContainsKey(7))
+            {
+                int weight = Convert.ToInt32(updates[7]);
+                if (weight < 0 || weight > 300)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Invalid weight");
+                }
+                else
+                {
+                    return db.Animals.Where(a => a.Weight == weight);
+                }
+            }
 
         }
          
