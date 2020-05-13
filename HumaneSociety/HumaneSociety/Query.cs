@@ -348,10 +348,23 @@ namespace HumaneSociety
             else if(updates.ContainsKey(5))
             {
                 if (updates[5].Contains("yes"))
-                return db.Animals.Where(a => a.KidFriendly == true);
+                {
+                    return db.Animals.Where(a => a.KidFriendly == true);
+                }
                 else
                 {
                     return db.Animals.Where(a => a.KidFriendly == false);
+                }
+            }
+            else if(updates.ContainsKey(6))
+            {
+                if (updates[6].Contains("yes"))
+                {
+                    return db.Animals.Where(a => a.PetFriendly == true);
+                }
+                else
+                {
+                    return db.Animals.Where(a => a.PetFriendly == false);
                 }
             }
 
