@@ -330,15 +330,7 @@ namespace HumaneSociety
             else if (updates.ContainsKey(3))
             {
                 int age = Convert.ToInt32(updates[3]);
-                if(age < 0 || age > 80)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid age");
-                }
-                else
-                {
-                    return db.Animals.Where(a => a.Age == age);
-                }
+                 return db.Animals.Where(a => a.Age == age);
             }
             else if(updates.ContainsKey(4))
             {
@@ -368,16 +360,8 @@ namespace HumaneSociety
             }
             else if(updates.ContainsKey(7))
             {
-                int weight = Convert.ToInt32(updates[7]);
-                if (weight < 0 || weight > 300)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid weight");
-                }
-                else
-                {
-                    return db.Animals.Where(a => a.Weight == weight);
-                }
+                int weight = Convert.ToInt32(updates[7]);                
+                return db.Animals.Where(a => a.Weight == weight);
             }
             else if(updates.ContainsKey(8))
             {
