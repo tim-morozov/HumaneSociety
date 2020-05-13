@@ -198,7 +198,7 @@ namespace HumaneSociety
         {
             try
             {
-                foundEmployee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
+               Employee foundEmployee = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
                 return foundEmployee;
             }
             catch (NullReferenceException)
