@@ -248,8 +248,65 @@ namespace HumaneSociety
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
-        {            
-            throw new NotImplementedException();
+        {
+            Animal animalFromDb = GetAnimalByID(animalId);
+            if (updates.ContainsKey(1)) //Category
+            {
+                animalFromDb.Category = db.Categories.Where(c => c.Name == updates[1]).FirstOrDefault();
+            }
+            else if (updates.ContainsKey(2)) //Name
+            {
+                
+            }
+            else if (updates.ContainsKey(3)) //Age
+            {
+                try
+                {
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
+            else if (updates.ContainsKey(4)) //Demeanor
+            {
+                
+            }
+            else if (updates.ContainsKey(5)) //KidFriendly (Bool)
+            {
+                try
+                {
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
+            else if (updates.ContainsKey(6)) //PetFriendly (Bool)
+            {
+                try
+                {
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
+            else if (updates.ContainsKey(7)) //Weight
+            {
+                try
+                {
+                    
+                }
+                catch
+                {
+                    Console.WriteLine("Invalid input.");
+                }
+            }
+            db.SubmitChanges();
         }
 
         internal static void RemoveAnimal(Animal animal)
