@@ -11,12 +11,12 @@ namespace HumaneSociety.Properties
 {
     static class CSVreader
     {
-        public static List<List<string>> ReadFile()
+        public static List<List<string>> ReadFile(string filePath)
         {
-            StreamReader sr = new StreamReader("C:\\Users\\jeff\\Desktop\\HumaneSociety2\\HumaneSociety\\HumaneSociety\\animals.csv");
+            StreamReader sr = new StreamReader(filePath);
             Regex input = new Regex(@"\d+|\w+");
 
-            var lines = File.ReadAllLines("C:\\Users\\jeff\\Desktop\\HumaneSociety2\\HumaneSociety\\HumaneSociety\\animals.csv").ToList();
+            var lines = File.ReadAllLines(filePath).ToList();
             var result = lines.Select(l => l.Split(',')).ToList();
             var output = result.Select(x => x.Select(y => input.Match(y).ToString()).ToList()).ToList();
 
