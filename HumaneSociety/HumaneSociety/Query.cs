@@ -245,15 +245,18 @@ namespace HumaneSociety
 
         internal static Animal GetAnimalByID(int id)
         {
-            Animal getAnimalFromDb = db.Animals.Where(a => a.AnimalId == id).FirstOrDefault();
-            if (getAnimalFromDb == null)
+            try
             {
-                throw new NullReferenceException();
-            }
-            else
-            {
+                Animal getAnimalFromDb = db.Animals.Where(a => a.AnimalId == id).FirstOrDefault();
                 return getAnimalFromDb;
             }
+
+            catch(NullReferenceException)
+            {
+                Console.WriteLine("Animal not found!");
+                return GetAnimalByID(id);
+            }            
+                       
         }
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
@@ -265,13 +268,13 @@ namespace HumaneSociety
             }
             else if (updates.ContainsKey(2)) //Name
             {
-                
+                animalFromDb.Name = updates[2];
             }
             else if (updates.ContainsKey(3)) //Age
             {
                 try
                 {
-                    
+                    animalFromDb.Age = Convert.ToInt32(updates[3]);
                 }
                 catch
                 {
@@ -280,13 +283,13 @@ namespace HumaneSociety
             }
             else if (updates.ContainsKey(4)) //Demeanor
             {
-                
+                animalFromDb.Demeanor = updates[4];
             }
             else if (updates.ContainsKey(5)) //KidFriendly (Bool)
             {
                 try
                 {
-                    
+                    animalFromDb.KidFriendly = Convert.ToBoolean(updates[5]);
                 }
                 catch
                 {
@@ -297,7 +300,7 @@ namespace HumaneSociety
             {
                 try
                 {
-                    
+                    animalFromDb.PetFriendly = Convert.ToBoolean(updates[6]);
                 }
                 catch
                 {
@@ -308,7 +311,7 @@ namespace HumaneSociety
             {
                 try
                 {
-                    
+                    animalFromDb.Weight = Convert.ToInt32(updates[7]);
                 }
                 catch
                 {
@@ -322,6 +325,7 @@ namespace HumaneSociety
         {
             Animal GetAnimalFromDb = GetAnimalByID(animal.AnimalId);
             db.Animals.DeleteOnSubmit(GetAnimalFromDb);
+            db.SubmitChanges();
         }
         
         // TODO: Animal Multi-Trait Search
