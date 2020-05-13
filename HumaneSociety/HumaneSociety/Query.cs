@@ -380,7 +380,12 @@ namespace HumaneSociety
                     return db.Animals.Where(a => a.Weight == weight);
                 }
             }
-
+            else if(updates.ContainsKey(8))
+            {
+                int id = Convert.ToInt32(updates[8]);
+                return db.Animals.Where(a => a.AnimalId == id);
+            }
+          return null;
         }
          
         // TODO: Misc Animal Things
